@@ -1,34 +1,43 @@
 // TODO: Implement the BaccaratHand class in the file
 
-public class BaccaratHand extends CardCollection  {
-    //constructor of the baccarat hand
+public class BaccaratHand extends CardCollection {
+    // constructor of the baccarat hand
     public BaccaratHand() {
         return;
     }
-    //returns the number of cards in the hand
+
+    // returns the number of cards in the hand
     public int size() {
         return super.size();
     }
+
     // adding the card to the hand
     public void add(Card card) {
         super.add(card);
         return;
     }
-    // returns the value of the hand 
+
+    // returns the value of the hand
     @Override
     public int value() {
         int handValue = super.value();
-        if(handValue >=10){
+        if (handValue >= 10) {
             handValue = handValue - 10;
         }
         return handValue;
     }
     // check if the hand is a natural
+
     public boolean isNatural() {
-        return false;
+        boolean naturalHand = false;
+        if (super.value() == 8 || super.value() == 9) {
+            naturalHand = true;
+        }
+        return naturalHand;
     }
+
     // returns the string representation of the hand
     public String toString() {
-        return null;
+        return super.toString();
     }
 }
