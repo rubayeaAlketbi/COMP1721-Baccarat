@@ -15,8 +15,13 @@ public class BaccaratHand extends CardCollection  {
         return;
     }
     // returns the value of the hand 
+    @Override
     public int value() {
-        return 0;
+        int handValue = super.value();
+        if(handValue >=10){
+            handValue = handValue - 10;
+        }
+        return handValue;
     }
     // check if the hand is a natural
     public boolean isNatural() {
