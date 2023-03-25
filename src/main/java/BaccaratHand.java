@@ -1,16 +1,17 @@
 // TODO: Implement the BaccaratHand class in the file
 
-public class BaccaratHand {
+public class BaccaratHand extends CardCollection  {
     //constructor of the baccarat hand
     public BaccaratHand() {
         return;
     }
     //returns the number of cards in the hand
     public int size() {
-        return 0;
+        return super.size();
     }
     // adding the card to the hand
     public void add(Card card) {
+        super.add(card);
         return;
     }
     // returns the value of the hand 
