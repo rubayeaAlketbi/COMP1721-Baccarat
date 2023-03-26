@@ -1,5 +1,5 @@
 // TODO: Implement the Shoe class in this file
-public class Shoe {
+public class Shoe extends CardCollection{
     // constructor of the shoe 
     public Shoe(int numDecks) {
         return;
