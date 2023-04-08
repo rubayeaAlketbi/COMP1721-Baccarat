@@ -1,3 +1,4 @@
+import java.util.Collections;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -7,32 +8,36 @@ public class Shoe extends CardCollection{
     protected List <BaccaratCard> decks;
 
     public Shoe(int numDecks) {
-        int deckIndex = 0;
-        if(numDecks == 8 || numDecks == 6){
-            // Create a new linked list of cards 
-            decks = new LinkedList<>();
-            while(deckIndex != numDecks){
-                for(Card.Suit s : Card.Suit.values()){
-                    for(Card.Rank r : Card.Rank.values()){
-                        decks.add(new BaccaratCard(r, s));
+        // check if the number of decks is valid
+        if(numDecks  == 6 || numDecks == 8){
+            // Create a list of decks
+            decks = new LinkedList<BaccaratCard>();
+            for(int i = 0; i < numDecks; i++){
+                for(Card.Suit cardSuit: Card.Suit.values()){
+                    for(Card.Rank cardRank: Card.Rank.values()){
+                        decks.add(new BaccaratCard(cardRank, cardSuit));
                     }
                 }
-                deckIndex++;
             }
-        }else{
+        } else{
             throw new CardException("Invalid number of decks");
         }
+        return;
     }
     // returns the number of cards in the shoe
     public int size() {
-        return 0;
+        return decks.size();
     }
-    // shuffles the shoe
+    
     public void shuffle() {
+        Collections.shuffle(decks);
         return;
     }
     // deal the card 
     public Card deal() {
-        return null;
+        if(decks.isEmpty()){
+            throw new CardException("No more cards in the shoe");
+        }
+        return decks.remove(0);
     }
 }
