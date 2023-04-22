@@ -1,3 +1,5 @@
+import java.util.Collection;
+
 public class Baccarat {
   // TODO: Implement your Baccarat simulation program here
   /* 
@@ -13,10 +15,11 @@ public class Baccarat {
   // Create a shoe of 6 decks
   private static Shoe baccaratShoe = new Shoe(6);
 
-  // Create the two hans for the player and the banker
+  // Create the two hands for the player and the banker
   private static BaccaratHand playerHand = new BaccaratHand();
   private static BaccaratHand bankerHand = new BaccaratHand();
-
   
+  
+
 
 }
