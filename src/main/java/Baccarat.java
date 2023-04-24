@@ -1,7 +1,7 @@
 
 public class Baccarat {
   // TODO: Implement your Baccarat simulation program here
-  
+
   // Create the two hands for the player and the banker
   private static BaccaratHand playerHand;
   private static BaccaratHand bankerHand;
@@ -53,8 +53,9 @@ public class Baccarat {
   }
 
   // Method which checks if one of the hands has a natural hand
-  // Returns 1 if the player has a natural hand and 2 if the banker has a natural and if both have a natural hand then it returns 3
-  public static int checkNatural(){
+  // Returns 1 if the player has a natural hand and 2 if the banker has a natural
+  // and if both have a natural hand then it returns 3
+  public static int checkNatural() {
     if ((playerHand.isNatural()) && (!bankerHand.isNatural())) {
       System.out.println("Player has a natural hand");
       return 1;
@@ -67,6 +68,51 @@ public class Baccarat {
       return 0;
     }
   }
+
+  // Method which check if the player is eligible for a third card
+  // Returns 1 if the player is eligible for a third card and 0 if the player is
+  // not eligible for a third card
+  public static int checkPlayerThirdCard() {
+    if (playerHand.value() <= 5) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+
+  // Method which check if the banker is eligible for a third card
+  // Returns 2 if the banker is eligible for a third card and 0 if the banker is
+  // not eligible for a third card
+  public static int checkBankerThirdCard() {
+    // The banker will follow the condition of the player if the player is not
+    // eligible for the third card
+    int playerThirdCard = checkPlayerThirdCard();
+    if (playerThirdCard == 0) {
+      // if the banker value is less than five then deal thrid card else return 0
+      if (bankerHand.value() <= 5) {
+        return 2;
+      } else {
+        return 0;
+      }
+    } else {
+      // if the player value is less than 6 and the banker value is less than 6 then
+      // deal third card else return 0
+      if (bankerHand.value() <= 2) {
+        return 2;
+      } else if ((bankerHand.value() == 3) && (playerHand.value() != 8)) {
+        return 2;
+      } else if (((bankerHand.value() == 4)) && ((playerHand.value() >= 2) && (playerHand.value() <= 7))) {
+        return 2;
+      } else if (((bankerHand.value() == 5)) && ((playerHand.value() >= 4) && (playerHand.value() <= 7))) {
+        return 2;
+      } else if (((bankerHand.value() == 6)) && ((playerHand.value() >= 6) && (playerHand.value() <= 7))) {
+        return 2;
+      } else {
+        return 0;
+      }
+    }
+  }
+
 
   public static void main(String[] args) {
     // Step 2 : Shuffle the shoe
