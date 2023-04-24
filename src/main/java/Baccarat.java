@@ -6,10 +6,6 @@ public class Baccarat {
   private static BaccaratHand playerHand;
   private static BaccaratHand bankerHand;
 
-  // Create a hand value
-  private static int playerHandValue;
-  private static int bankerHandValue;
-
   // Create a baccarat Shoes
   private static Shoe baccaratShoe;
 
@@ -51,8 +47,8 @@ public class Baccarat {
   // store the values of hand
   public static void displayCard() {
     System.out.println("Round " + rounds);
-    System.out.println("Player hand: " + playerHand.toString() + "= " + playerHand.value());
-    System.out.println("Banker hand: " + bankerHand.toString() + "= " + bankerHand.value());
+    System.out.println("Player hand: " + playerHand.toString() + " = " + playerHand.value());
+    System.out.println("Banker hand: " + bankerHand.toString() + " = " + bankerHand.value());
   }
 
   // Method which checks if one of the hands has a natural hand
@@ -124,8 +120,8 @@ public class Baccarat {
     if (naturalHand == 0 && thirdCardCondition == 1 && playerHand.size() <= 3 ) {
         System.out.println("Dealing third card to player...");
         playerHand.add(baccaratShoe.deal());
-        System.out.println("Player hand: " + playerHand.toString() + "= " + playerHand.value());
-        System.out.println("Banker hand: " + bankerHand.toString() + "= " + bankerHand.value());
+        System.out.println("Player hand: " + playerHand.toString() + " = " + playerHand.value());
+        System.out.println("Banker hand: " + bankerHand.toString() + " = " + bankerHand.value());
       }
   }  
 
@@ -138,8 +134,8 @@ public class Baccarat {
     if (naturalHand == 0 && thirdCardCondition == 2 && bankerHand.size() <= 3) {
         System.out.println("Dealing third card to banker...");
         bankerHand.add(baccaratShoe.deal());
-        System.out.println("Player hand: " + playerHand.toString() + "= " + playerHand.value());
-        System.out.println("Banker hand: " + bankerHand.toString() + "= " + bankerHand.value());
+        System.out.println("Player hand: " + playerHand.toString() + " = " + playerHand.value());
+        System.out.println("Banker hand: " + bankerHand.toString() + " = " + bankerHand.value());
       }
   }
 
