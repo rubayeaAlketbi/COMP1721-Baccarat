@@ -113,29 +113,64 @@ public class Baccarat {
     }
   }
 
+  // Method which deals the third card to the player and the banker
+  public static void dealThirdCard(){
+    // The third card condition starts with the following condition : NO NATURAL HAND
+    int naturalHand = checkNatural();
+    int playerThirdCard = checkPlayerThirdCard();
+    int bankerThirdCard = checkBankerThirdCard();
+
+    if(naturalHand == 0){
+      if(playerThirdCard == 1){
+        System.out.println("Dealing third card to player...");
+        playerHand.add(baccaratShoe.deal());
+        System.out.println("Player hand: " + playerHand.toString() + "=" + playerHand.value());
+        System.out.println("Banker hand: " + bankerHand.toString() + "=" + bankerHand.value());
+      }
+      else if(bankerThirdCard == 2){
+        System.out.println("Dealing third card to banker...");
+        bankerHand.add(baccaratShoe.deal());
+        System.out.println("Player hand: " + playerHand.toString() + "=" + playerHand.value());
+        System.out.println("Banker hand: " + bankerHand.toString() + "=" + bankerHand.value());
+      }
+    }
+  }
+
+  // Method which determines the winner of the round 
+  public static void determineWinner(){
+    int naturalHand = checkNatural();
+    if(naturalHand == 1){
+      System.out.println("Player wins");
+      playerWin++;
+    }
+    else if(naturalHand == 2){
+      System.out.println("Banker wins");
+      bankerWin++;
+    }
+    else if(naturalHand == 3){
+      if(bankerHand.value() == playerHand.value()){
+        System.out.println("Tie");
+        tie++;
+      } else if (bankerHand.value() > playerHand.value()){
+        System.out.println("Banker wins!");
+        bankerWin++;
+      } else {
+        System.out.println("Player wins!");
+        playerWin++;
+      }
+    } else if (bankerHand.value() == playerHand.value()){
+      System.out.println("Tie");
+      tie++;
+    } else if (bankerHand.value() > playerHand.value()){
+      System.out.println("Banker wins!");
+      bankerWin++;
+    } else {
+      System.out.println("Player wins!");
+      playerWin++;
+    }
+  }
 
   public static void main(String[] args) {
-    // Step 2 : Shuffle the shoe
-    baccaratShoe.shuffle();
-
-    // Step 4 : Deal a card to the player and then the banker until both have two
-    // cards
-    playerHand.add(baccaratShoe.deal());
-    bankerHand.add(baccaratShoe.deal());
-    playerHand.add(baccaratShoe.deal());
-    bankerHand.add(baccaratShoe.deal());
-
-    // Step 5: Display the content of the card and the value of the hand
-    System.out.println("Player hand: " + playerHand.toString() + " (" + playerHand.value() + ")");
-    System.out.println("Banker hand: " + bankerHand.toString() + " (" + bankerHand.value() + ")");
-
-    // Step 6 : Inform whether one of them has a natural hand.
-    if (playerHand.isNatural()) {
-      System.out.println("Player has a natural hand");
-    } else if (bankerHand.isNatural()) {
-      System.out.println("Banker has a natural hand");
-    } else {
-      System.out.println("No natural hand");
-    }
+    
   }
 }
