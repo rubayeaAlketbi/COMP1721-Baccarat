@@ -24,6 +24,7 @@ public class Shoe extends CardCollection{
         }
         return;
     }
+    
     // returns the number of cards in the shoe
     public int size() {
         return decks.size();
@@ -33,6 +34,7 @@ public class Shoe extends CardCollection{
         Collections.shuffle(decks);
         return;
     }
+
     // deal the card 
     public Card deal() {
         if(decks.isEmpty()){
