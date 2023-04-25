@@ -3,31 +3,20 @@ import java.util.Scanner;
 public class Baccarat {
   // TODO: Implement your Baccarat simulation program here
 
-  // Create the two hands for the player and the banker
+  // Fields the two hands for the player and the banker
   private static BaccaratHand playerHand;
   private static BaccaratHand bankerHand;
 
-  // Create a baccarat Shoes
+  // Field for a baccarat Shoes
   private static Shoe baccaratShoe;
 
-  // Create a log which will record the cards that are dealt and the winning log
-  // of each round
+  // Fields for recording the game statistics
   private static int rounds = 0;
   private static int playerWin = 0;
   private static int bankerWin = 0;
   private static int tie = 0;
 
-  // Enum for the user input
-  public enum YES {
-    YES, Y, y, yes
-  };
-
-  public enum NO {
-    NO, N, n, no
-  };
-
-  // Initialize the game by creating hands and initializing the shoes assuming
-  // that the game is non interactive
+  // Method that initialize the game
   public static void initializeGame() {
     playerHand = new BaccaratHand();
     bankerHand = new BaccaratHand();
@@ -52,7 +41,7 @@ public class Baccarat {
     bankerHand.add(baccaratShoe.deal());
   }
 
-  // Method which displays the content of the card and the value of the hand 
+  // Method which displays the content of the card and the value of the hand
   public static void displayCard() {
     System.out.println("Round " + rounds);
     System.out.println("Player hand: " + playerHand.toString() + " = " + playerHand.value());
@@ -107,7 +96,7 @@ public class Baccarat {
     }
   }
 
-  // Method which deals the third card to the player 
+  // Method which deals the third card to the player
   public static void playerThirdCard() {
     int naturalHand = checkNatural();
     int thirdCardCondition = checkPlayerThirdCard();
@@ -119,7 +108,8 @@ public class Baccarat {
       System.out.println("Banker hand: " + bankerHand.toString() + " = " + bankerHand.value());
     }
   }
-  // Method which deals the third card to the banker 
+
+  // Method which deals the third card to the banker
   public static void bankerThirdCard() {
     int naturalHand = checkNatural();
     int thirdCardCondition = checkBankerThirdCard();
@@ -173,7 +163,6 @@ public class Baccarat {
   }
 
   // Method which displays the number of rounds played, the number of wins for the
-  // player, the number of wins for the banker and the number of ties
   public static void displayLog() {
     System.out.println(rounds + " rounds played");
     System.out.println(playerWin + " player wins");
@@ -181,14 +170,12 @@ public class Baccarat {
     System.out.println(tie + " ties");
   }
 
-  // Method which asks for the user input , if the user input starts with Y or y
-  // then the game continues by returning one
-  // else the game stops by returning zero
+  // Method which asks for the user input to start a new round
   public static int nextRound() {
     Scanner userInput = new Scanner(System.in);
     System.out.print("Another round? (y/n): ");
     String userAnswer = userInput.next();
-    // Take the first character of the user input
+
     char firstChar = userAnswer.toUpperCase().charAt(0);
     if (firstChar == 'Y') {
       return 1;
@@ -219,7 +206,6 @@ public class Baccarat {
   // Method which plays the game in non-interactive mode
   public static void playNonInteractiveGame() {
     initializeGame();
-    // The game continues until there is at least 6 cards left in the shoe
     do {
       cleanHands();
       dealCards();
@@ -235,8 +221,6 @@ public class Baccarat {
   public static void playInteractiveGame() {
     int playNextRound = 1;
     initializeGame();
-    // The game continues until there is at least 6 cards left in the shoe or the
-    // user wants to stop playing
     do {
       if (playNextRound == 1) {
         cleanHands();
@@ -256,7 +240,8 @@ public class Baccarat {
   public static void main(String[] args) {
     // Check the cmd line arguments
     int cmdLineArgs = checkCmdLineArgs(args);
-    // If the user wants to play in interactive mode\
+
+    // If the user wants to play in interactive mode or non-interactive mode
     if (cmdLineArgs == 1) {
       playInteractiveGame();
     } else {
