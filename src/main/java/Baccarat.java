@@ -34,7 +34,7 @@ public class Baccarat {
     baccaratShoe = new Shoe(6);
   }
 
-  // Create a method which is used to clear hand on start every round of Baccarat
+  // Method which is used to clear hand on start every round of Baccarat
   public static void cleanHands() {
     rounds++;
     if (!playerHand.isEmpty() || !bankerHand.isEmpty()) {
@@ -43,8 +43,7 @@ public class Baccarat {
     }
   }
 
-  // Method which deals a card to the player and the banker starting from the
-  // player
+  // Method which deals a card to the player and the banker
   public static void dealCards() {
     baccaratShoe.shuffle();
     playerHand.add(baccaratShoe.deal());
@@ -53,8 +52,7 @@ public class Baccarat {
     bankerHand.add(baccaratShoe.deal());
   }
 
-  // Method which displays the content of the card and the value of the hand ans
-  // store the values of hand
+  // Method which displays the content of the card and the value of the hand 
   public static void displayCard() {
     System.out.println("Round " + rounds);
     System.out.println("Player hand: " + playerHand.toString() + " = " + playerHand.value());
@@ -62,14 +60,12 @@ public class Baccarat {
   }
 
   // Method which checks if one of the hands has a natural hand
-  // Returns 1 if the player has a natural hand and 2 if the banker has a natural
-  // and if both have a natural hand then it returns 3
   public static int checkNatural() {
-    if ((playerHand.isNatural()) && (!bankerHand.isNatural())) {
+    if (playerHand.isNatural() && !bankerHand.isNatural()) {
       return 1;
-    } else if ((bankerHand.isNatural()) && (!playerHand.isNatural())) {
+    } else if (bankerHand.isNatural() && !playerHand.isNatural()) {
       return 2;
-    } else if ((playerHand.isNatural()) && (bankerHand.isNatural())) {
+    } else if (playerHand.isNatural() && bankerHand.isNatural()) {
       return 3;
     } else {
       return 0;
@@ -77,8 +73,6 @@ public class Baccarat {
   }
 
   // Method which check if the player is eligible for a third card
-  // Returns 1 if the player is eligible for a third card and 0 if the player is
-  // not eligible for a third card
   public static int checkPlayerThirdCard() {
     if (playerHand.value() <= 5) {
       return 1;
@@ -88,31 +82,24 @@ public class Baccarat {
   }
 
   // Method which check if the banker is eligible for a third card
-  // Returns 2 if the banker is eligible for a third card and 0 if the banker is
-  // not eligible for a third card
   public static int checkBankerThirdCard() {
-    // The banker will follow the condition of the player if the player is not
-    // eligible for the third card
     int playerThirdCard = checkPlayerThirdCard();
     if (playerThirdCard == 0) {
-      // if the banker value is less than five then deal thrid card else return 0
       if (bankerHand.value() <= 5) {
         return 2;
       } else {
         return 0;
       }
     } else {
-      // if the player value is less than 6 and the banker value is less than 6 then
-      // deal third card else return 0
       if (bankerHand.value() <= 2) {
         return 2;
-      } else if ((bankerHand.value() == 3) && (playerHand.value() != 8)) {
+      } else if (bankerHand.value() == 3 && playerHand.value() != 8) {
         return 2;
-      } else if (((bankerHand.value() == 4)) && ((playerHand.value() >= 2) && (playerHand.value() <= 7))) {
+      } else if (bankerHand.value() == 4 && playerHand.value() >= 2 && playerHand.value() <= 7) {
         return 2;
-      } else if (((bankerHand.value() == 5)) && ((playerHand.value() >= 4) && (playerHand.value() <= 7))) {
+      } else if (bankerHand.value() == 5 && playerHand.value() >= 4 && playerHand.value() <= 7) {
         return 2;
-      } else if (((bankerHand.value() == 6)) && ((playerHand.value() >= 6) && (playerHand.value() <= 7))) {
+      } else if (bankerHand.value() == 6 && playerHand.value() >= 6 && playerHand.value() <= 7) {
         return 2;
       } else {
         return 0;
@@ -120,10 +107,8 @@ public class Baccarat {
     }
   }
 
-  // Method which deals the third card to the player and the banker
+  // Method which deals the third card to the player 
   public static void playerThirdCard() {
-    // The third card condition starts with the following condition : NO NATURAL
-    // HAND
     int naturalHand = checkNatural();
     int thirdCardCondition = checkPlayerThirdCard();
 
@@ -134,10 +119,8 @@ public class Baccarat {
       System.out.println("Banker hand: " + bankerHand.toString() + " = " + bankerHand.value());
     }
   }
-
+  // Method which deals the third card to the banker 
   public static void bankerThirdCard() {
-    // The third card condition starts with the following condition : NO NATURAL
-    // HAND
     int naturalHand = checkNatural();
     int thirdCardCondition = checkBankerThirdCard();
 

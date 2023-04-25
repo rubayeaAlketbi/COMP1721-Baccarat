@@ -35,8 +35,10 @@ public class BaccaratCard extends Card {
     @Override
     public int value() {
         // The face cards (Jack, Queen, King) & 10 are worth zero points.
-        if (super.getRank() == Card.Rank.JACK || super.getRank() == Card.Rank.QUEEN || super.getRank() == Card.Rank.KING
-                || super.getRank() == Card.Rank.TEN) {
+        if (super.getRank() == Card.Rank.JACK
+            || super.getRank() == Card.Rank.QUEEN
+            || super.getRank() == Card.Rank.KING
+            || super.getRank() == Card.Rank.TEN) {
             return 0;
         } else {
             // The other card worth their face value.
