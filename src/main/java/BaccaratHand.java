@@ -1,23 +1,23 @@
 // TODO: Implement the BaccaratHand class in the file
 
 public class BaccaratHand extends CardCollection {
-    // constructor of the baccarat hand
+    // Method to create a baccarat hand
     public BaccaratHand() {
         return;
     }
 
-    // returns the number of cards in the hand
+    // Method to get the number of cards in the hand
     public int size() {
         return super.size();
     }
 
-    // adding the card to the hand
+    // Method to add the card to the hand
     public void add(Card card) {
         super.add(card);
         return;
     }
 
-    // returns the value of the hand
+    // Method which returns the value of the hand
     @Override
     public int value() {
         int handValue = super.value();
@@ -26,8 +26,8 @@ public class BaccaratHand extends CardCollection {
         }
         return handValue;
     }
-    // check if the hand is a natural
 
+    // Method to check if the hand is a natural
     public boolean isNatural() {
         boolean naturalHand = false;
 
@@ -37,7 +37,7 @@ public class BaccaratHand extends CardCollection {
         return naturalHand;
     }
 
-    // returns the string representation of the hand
+    // Method which returns the string representation of the hand
     @Override
     public String toString() {
         String handString = "";
